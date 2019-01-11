@@ -1,0 +1,15 @@
+<div class="jumbotron bg-light p-5">
+  <h1 class="display-3 text-dark">Welcome to the Classic Café.</h1>
+</div>
+<div class="container">
+<h1 class="text-dark">Our excellent pastries are world-famous!</h1>
+<div class="card text-center" *ngIf="!pastriesList || pastriesList.length == 0">
+  <p class="card-text text-dark p-2">Unfortunately, they haven't been entered. Try <a href="/pastries">managing the menu</a> so they show up!</p>
+</div>
+<div class="card-columns pastriesList" *ngIf="pastriesList">
+  <div class="card text-center" *ngFor="let pastry of pastriesList">
+    <h5 class="card-title bg-dark p-2 text-light">{{pastry.name}}</h5>
+    <p class="card-text text-dark p-2"><em>{{pastry.price | currency}}</em></p>
+  </div>
+</div>
+</div>

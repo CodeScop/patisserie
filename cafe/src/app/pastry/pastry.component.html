@@ -1,0 +1,77 @@
+<div class="container-fluid">
+  <br />
+  <div class="row justify-content-center">
+    <div class="col-md-11">
+      <form>
+        <div class="form-row">
+
+          <div class="col-md">
+            <input name="name" id="name" [(ngModel)]="newPastry.name" placeholder="Name" class="form-control">
+          </div>
+          <div class="col-md">
+            <input name="quantity" id="quantity" [(ngModel)]="newPastry.quantity" placeholder="Qty" class="form-control" >
+          </div>
+          <div class="col-md">
+            <input name="price" id="price" [(ngModel)]="newPastry.price" placeholder="$$$" class="form-control" >
+          </div>
+          <div class="col-md">
+            <button type="submit" class="btn btn-primary btn-block" (click)="create()">Add</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+  <br />
+
+  <div class="row justify-content-center">
+    <div class="col-md-11">
+
+      <div class="pastries" *ngIf="pastriesList">
+        <table class="table table-dark table-striped table-responsive-sm">
+          <thead class="h">
+            <tr class="h">
+              <th class="h">Pastry</th>
+              <th class="h">Qty</th>
+              <th class="h">Price</th>
+              <th class="h text-center">Manage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="pastry" (dblclick)="editPastry(pastry)" *ngFor="let pastry of pastriesList">
+
+              <ng-container *ngIf="!editPastries.includes(pastry); else editTD">
+                <td>{{pastry.name}}</td>
+                <td>{{pastry.quantity}}</td>
+                <td>{{pastry.price | currency }}</td>
+              </ng-container>
+
+              <ng-template #editTD>
+                <td>
+                  <input name="name" id="name" (keypress)="submitPastry($event, pastry)" [(ngModel)]="pastry.name" placeholder={{pastry.name}} class="form-control">
+                </td>
+                <td>
+                  <input name="quantity" id="quantity" (keypress)="submitPastry($event, pastry)" [(ngModel)]="pastry.quantity" placeholder={{pastry.quantity}} class="form-control" >
+                </td>
+                <td>
+                  <input name="price" id="price" (keypress)="submitPastry($event, pastry)" [(ngModel)]="pastry.price" placeholder={{pastry.price}} class="form-control" >
+                </td>
+              </ng-template>
+
+              <td class="o d-flex justify-content-around">
+                <a class="btn btn-primary" (click)="editPastry(pastry)">
+                  <i class="fa fa-pencil"></i>
+                </a>
+                <a class="btn btn-danger" (click)="deletePastry(pastry)">
+                  <i class="fa fa-trash"></i>
+                </a>
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
