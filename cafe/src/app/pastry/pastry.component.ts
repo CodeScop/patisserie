@@ -1,4 +1,3 @@
-import { Response } from '@angular/http';
 import { PastryService } from '../services/pastry.service';
 import Pastry from '../models/pastry.model';
 import { Component, OnInit } from '@angular/core';

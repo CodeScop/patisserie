@@ -1,7 +1,6 @@
 import Pastry from '../models/pastry.model';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import {Response} from '@angular/http';
 import { Injectable } from '@angular/core';
 
 import { map } from 'rxjs/operators';
